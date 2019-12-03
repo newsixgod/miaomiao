@@ -1,88 +1,17 @@
 <template>
     <div class="cinema_body">
         <ul>
-            <li>
+            <li v-for="item in cinemaList" :key="item.id">
                 <div>
-                    <span>大地影院(澳东世纪店)</span>
-                    <span class="q"><span class="price">22.9</span> 元起</span>
+                    <span>{{ item.nm }}</span>
+                    <span class="q"><span class="price">{{ item.sellPrice }}</span> 元起</span>
                 </div>
                 <div class="address">
-                    <span>金州区大连经济技术开发区澳东世纪3层</span>
-                    <span>1763.5km</span>
+                    <span>{{ item.addr }}</span>
+                    <span>{{ item.distance }}</span>
                 </div>
                 <div class="card">
-                    <div>小吃</div>
-                    <div>折扣卡</div>
-                </div>
-            </li>
-            <li>
-                <div>
-                    <span>大地影院(澳东世纪店)</span>
-                    <span class="q"><span class="price">22.9</span> 元起</span>
-                </div>
-                <div class="address">
-                    <span>金州区大连经济技术开发区澳东世纪3层</span>
-                    <span>1763.5km</span>
-                </div>
-                <div class="card">
-                    <div>小吃</div>
-                    <div>折扣卡</div>
-                </div>
-            </li>
-            <li>
-                <div>
-                    <span>大地影院(澳东世纪店)</span>
-                    <span class="q"><span class="price">22.9</span> 元起</span>
-                </div>
-                <div class="address">
-                    <span>金州区大连经济技术开发区澳东世纪3层</span>
-                    <span>1763.5km</span>
-                </div>
-                <div class="card">
-                    <div>小吃</div>
-                    <div>折扣卡</div>
-                </div>
-            </li>
-            <li>
-                <div>
-                    <span>大地影院(澳东世纪店)</span>
-                    <span class="q"><span class="price">22.9</span> 元起</span>
-                </div>
-                <div class="address">
-                    <span>金州区大连经济技术开发区澳东世纪3层</span>
-                    <span>1763.5km</span>
-                </div>
-                <div class="card">
-                    <div>小吃</div>
-                    <div>折扣卡</div>
-                </div>
-            </li>
-            <li>
-                <div>
-                    <span>大地影院(澳东世纪店)</span>
-                    <span class="q"><span class="price">22.9</span> 元起</span>
-                </div>
-                <div class="address">
-                    <span>金州区大连经济技术开发区澳东世纪3层</span>
-                    <span>1763.5km</span>
-                </div>
-                <div class="card">
-                    <div>小吃</div>
-                    <div>折扣卡</div>
-                </div>
-            </li>
-            <li>
-                <div>
-                    <span>大地影院(澳东世纪店)</span>
-                    <span class="q"><span class="price">22.9</span> 元起</span>
-                </div>
-                <div class="address">
-                    <span>金州区大连经济技术开发区澳东世纪3层</span>
-                    <span>1763.5km</span>
-                </div>
-                <div class="card">
-                    <div>小吃</div>
-                    <div>折扣卡</div>
+                    <div v-for="(num,key) in item.tag" v-if="num===1" :key="key" :class=" key | classCard ">{{ key | formatCard }}</div>
                 </div>
             </li>
         </ul>
@@ -92,7 +21,52 @@
 <script>
 export default {
     name : 'CiList',
-    
+    data(){
+        return {
+            cinemaList : [],
+        };
+    },
+    activated(){
+
+        this.axios.get('/api/cinemaList?cityId=10').then((res)=>{
+            var msg = res.data.msg;
+            if(msg === 'ok'){
+                this.cinemaList = res.data.data.cinemas;
+            }
+        });
+    },
+    filters : {
+        // 过滤器 后台传回来 0 1 0 1   这里有 1 的就匹配显示
+        formatCard(key){
+            var card = [
+                { key : 'allowRefund' , value : '改签' },
+                { key : 'endorse' , value : '退' },
+                { key : 'sell' , value : '折扣卡' },
+                { key : 'snack' , value : '小吃'}
+            ];
+            for(var i=0;i<card.length;i++){
+                if(card[i].key === key){
+                    return card[i].value;
+                }
+            }
+            return '';
+        },
+        // 过滤器 显示的小标签给个颜色
+        classCard(key){
+            var card = [
+                { key : 'allowRefund' , value : 'bl' },
+                { key : 'endorse' , value : 'bl' },
+                { key : 'sell' , value : 'or' },
+                { key : 'snack' , value : 'or'}
+            ];
+            for(var i=0;i<card.length;i++){
+                if(card[i].key === key){
+                    return card[i].value;
+                }
+            }
+            return '';
+        }
+    }
 }
 </script>
 
