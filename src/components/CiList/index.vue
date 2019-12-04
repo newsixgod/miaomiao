@@ -38,6 +38,7 @@ export default {
         this.isLoading = true;
 
         this.axios.get('/api/cinemaList?cityId='+cityId).then((res)=>{
+            // console.log(JSON.stringify(res));
             var msg = res.data.msg;
             if(msg === 'ok'){
                 this.cinemaList = res.data.data.cinemas;
