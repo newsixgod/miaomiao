@@ -1,0 +1,31 @@
+[33mcommit 868927138a9ea4dc0557fe79b1f90338d55e9c85[m[33m ([m[1;36mHEAD -> [m[1;32mdev[m[33m)[m
+Merge: 82b9e77 a8cebe4
+Author: newsixgod <1101128058@qq.com>
+Date:   Tue Dec 3 11:54:34 2019 +0800
+
+    Merge branch 'setData' into dev
+
+[33mcommit a8cebe43eddf63b566c0c1cc71e0290f567bdf35[m[33m ([m[1;32msetData[m[33m)[m
+Author: newsixgod <1101128058@qq.com>
+Date:   Tue Dec 3 11:54:18 2019 +0800
+
+    add setData
+
+[33mcommit 82b9e7762d10332709299dd3d0381016abed5f11[m[33m ([m[1;31morigin/dev[m[33m)[m
+Merge: 93d97ee 3fca25e
+Author: newsixgod <1101128058@qq.com>
+Date:   Mon Dec 2 20:32:52 2019 +0800
+
+    Merge branch 'createComponents' into dev
+
+[33mcommit 3fca25ea0d1d0596cea7eac25bfa4b5776d2b295[m
+Author: newsixgod <1101128058@qq.com>
+Date:   Mon Dec 2 20:25:24 2019 +0800
+
+    add createComponents
+
+[33mcommit 93d97eef9d2990bad13e83bc7afbff09a4d2d085[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Author: newsixgod <1101128058@qq.com>
+Date:   Mon Dec 2 11:35:39 2019 +0800
+
+    commit message
